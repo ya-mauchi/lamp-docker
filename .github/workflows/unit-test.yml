@@ -1,6 +1,8 @@
 name: PHP Syntax Check (Unit Test)
 
 on:
+  push:
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
