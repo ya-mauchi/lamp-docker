@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  apache:
+    build: ./php
+    container_name: lamp-apache
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./apache/default.conf:/etc/apache2/sites-available/000-default.conf
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: lamp-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: lampdb
+      MYSQL_USER: lampuser
+      MYSQL_PASSWORD: lamppass
+    ports:
+      - "3306:3306"
