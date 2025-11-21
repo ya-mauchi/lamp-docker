@@ -1,16 +1,17 @@
-name: Unit Test (PR)
+name: PHP Syntax Check (Unit Test)
 
 on:
   pull_request:
     branches: [ "main" ]
 
 jobs:
-  php-lint:
+  php-syntax-check:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - name: PHP Syntax Check
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: PHP syntax check
         run: |
           find src -name "*.php" -print0 | xargs -0 -n1 php -l
-
